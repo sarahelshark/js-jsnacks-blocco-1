@@ -11,6 +11,36 @@ In un array sono contenuti i nomi degli invitati alla festa del grande Gatsby, c
 */
 
 //creare lista di nomi per la verifica
-const partyList = ["Daisy", "Meyer", "Jordan", "Nick", "Tom"];
-//stampo per vedere se funziona
-console.log(partyList);
+let partyList = ["Daisy", "daisy", "Meyer", "meyer", "Jordan", "jordan", "Nick", "nick","Tom","tom"];
+
+// creo variabile per il form e aggancio event listener 
+const form = document.getElementById("form");
+
+form.addEventListener('submit',function(event){
+    event.preventDefault(); //prevengo default con submit
+    let nameOfUser = document.querySelector(".form-control").value; //prendo il dato da utente 
+
+    let partyGuest = false; //variabile con booleano che mi permetterà di fare un paragone 'per esclusione'. Ovvero di default decido che tutti i guest non sono in ista, tranne quelli che ho segnato nella variabile partyList
+
+for (let i=0; i < partyList.length; i++) {
+    if (partyList[i] === nameOfUser) {
+        partyGuest = true;
+    }
+}; 
+
+// se il nome  è presente nella lista, allora l'utente può accedere,
+if (partyGuest == 1) {
+    document.getElementById('form').innerHTML=`
+    <p class="d-flex flex-column mt-3 m-auto pb-3 text-success">
+        ciao ${nameOfUser}, sei nella lista degli invitati!
+     </p> `
+} else {
+    document.getElementById('form').innerHTML=`
+    <p class="d-flex flex-column mt-3 m-auto pb-3 text-danger">
+        che peccato ${nameOfUser}, purtroppo non sei nella lista degli invitati!
+     </p> `
+}
+
+})
+
+
