@@ -32,6 +32,15 @@ form.addEventListener('submit', function (event) {
        console.log (myArray)
 //utilizzo tecnica .reduce trovata in internet per sommare , fuori dal ciclo ????
 
+console.log(emptyList);
+
+// scorro l'array a partire dal primo numero e lo sommo con ogni numero seguente
+let numberSum = parseInt(myArray[0]);
+for (let i = 1; i < myArray.length; i++) {
+    numberSum += parseInt(myArray[i]);
+}
+
+console.log("La somma dei numeri inseriti è: " + numberSum);
 
 })
     
